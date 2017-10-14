@@ -1,107 +1,148 @@
 /**
  * Created by Adel on 14/10/2017.
+ * VectorHelper Class to make some basic operations on one dimension tables or vectors
  */
-public class VectorHelper {
-	public class vectorHelper {
-    private int maxt = 100;
-    private int nbElements = 0;
-    private int nbElements2 = 0;
-    private int nbElements3 = 0;
-    private int[] vec;
-    private int[] vec2;
-    private int[] vec3;
-    private int min;
-    private int max;
+public class VectorHelper{
+    /**
+     * this is the constructor of the Class
+     */
+       public VectorHelper (){}
 
-    public vectorHelper() {
-        this.vec = new int[this.maxt];
-        this.vec2 = new int[this.maxt];
-        this.vec3 = new int[this.maxt];
-    }
+    /**
+     * a function that inverse the order of one vector elements
+     * @param vec the Vector of which we desire to inverse the elements.
+     *      Exemples:
+     *      input:  1| 2| 3 |5
+     *     output:   5 |3 |2| 1
+     */
 
-    
+      public void Inverse(Vector vec) {
 
-    public void inverser() {
-        int[] vec2 = new int[this.maxt];
+         Vector vec2= new Vector();
         int j = 0;
 
         int i;
-        for(i = this.nbElements - 1; i >= 0; --i) {
-            this.vec2[j] = this.vec[i];
+        for(i = vec.getComponantNumber()- 1; i >= 0; --i) {
+            vec2.getVec()[j]= vec.getVec()[i];
             ++j;
         }
 
-        for(i = 0; i < this.nbElements; ++i) {
-            this.vec[i] = this.vec2[i];
+        for(i = 0; i < vec.getComponantNumber(); ++i) {
+            vec.getVec()[i] = vec2.getVec()[i];
         }
 
-    }
+      }
+    /**
+     * a function that make the additon of two vectors  with the same size and throw an exception if not
+     * @param vec1  vector of which we want to add the values to those of vec2
+     * @param vec2  vector of which we want to add the values to those of vec1
+     * @throws  DifferentLengthException
+     *      Exemples:
+     *      input:  1| 2| 3 |5      2 |3 |4| 1
+     *      output:   3 |5 |7 | 6
+     */
 
-   
 
-    public void sommeVec() throws DifferentLengthExceeption {
-
+    public void sommeVec(Vector vec1 , Vector vec2 ) throws DifferentLengthException {
+         Vector vec3 = new Vector();
        try{
-       if(this.nbElements != this.nbElements2) {
-            throw new DifferentLengthExceeption();
+       if(vec1.getComponantNumber() != vec2.getComponantNumber()) {
+            throw new DifferentLengthException();
         } else {
-            for(int i = 0; i < this.nbElements; ++i) {
-                this.vec3[i] = this.vec2[i] + this.vec[i];
+            for(int i = 0; i < vec1.getComponantNumber(); ++i) {
+                vec3.getVec()[i] = vec2.getVec()[i] + vec1.getVec()[i];
             }
 
-            this.nbElements3 = this.nbElements;
+            vec3.componantNumber = vec1.componantNumber;
         }
           }
-        catch (DifferentLengthExceeption e)
+        catch (DifferentLengthException e)
         {
-            System.out.println("Oops ! c'est pas la meme taille ");
+          e= new DifferentLengthException();
         }
     }
 
-    public int smallIndex(int n1, int n2) {
-           int petit = this.vec[n1];
+    /**
+     *  a function that give the smallest element's index in one interval of values
+     * @param vec  the vector on which we make the operation of research
+     * @param n1 the beginning of the research index
+     * @param n2 the ending of the research index
+     * @return the index of the smallest value.
+     *      Exemples:
+     *      input:  1| 9| 7 |5 |8 |4   index 2   index 4
+     *      output:    3
+     */
+
+    public int smallest(Vector vec,int n1, int n2) {
+           int small =vec.getVec()[n1];
            int ind =n1;
    
            for(int i =n1 + 1; i <n2; ++i) {
-               if(this.vec[i] < petit) {
-                   petit = this.vec[i];
+               if(vec.getVec()[i] < small) {
+                   small = vec.getVec()[i];
                    ind = i;
                }
            }
    
            return ind;
-       }
+    }
 
-    public void triVec() {
-        for(int i = 0; i < this.nbElements - 1; ++i) {
-            int x = this.vec[this.smallIndex(i, this.nbElements)];
-            this.vec[this.smallIndex(i, this.nbElements)] = this.vec[i];
-            this.vec[i] = x;
+    /**
+     *  a function that sort the elements of one vector
+     * @param vec the vector of which we want to put the elements in order.
+     *      Exemples:
+     *      input:    2 | 4 |3  | 1
+     *      output:   1 |2 |3 | 4
+     */
+
+    public void triVec(Vector vec) {
+        for(int i = 0; i < vec.componantNumber - 1; ++i) {
+            int x = vec.getVec()[this.smallest(vec, i, vec.componantNumber)];
+            vec.getVec()[this.smallest(vec,i, vec.componantNumber)] = vec.getVec()[i];
+            vec.getVec()[i] = x;
         }
     }
 
-  public void setExtrema () {
+    /**
+     *  a function that gives the minimum  and the maximum of one vector
+     * @param vec the vector of which we desire to find the min and the max.
+     *      Exemples:
+     *      input:  1| 2| 3 |5
+     *      output:   min 1  max 5
+     */
+
+  public void setExtrema (Vector vec) {
     	    int i=0;
-    	    int minValue =this.vec[0];
-    	    int maxValue=this.vec[0];
-    	    while (i<vec.length) {
-            if (vec[i] <minValue) {
-                minValue=vec[i];
+    	    int minValue =vec.getVec()[0];
+    	    int maxValue =vec.getVec()[0];
+    	    while (i<vec.getVec().length) {
+            if (vec.getVec()[i] <minValue) {
+                minValue=vec.getVec()[i];
            			 }
-            if (vec[i]> maxValue) {
-                maxValue=vec[i];
+            if (vec.getVec()[i]> maxValue) {
+                maxValue=vec.getVec()[i];
             }
             i++;
             }
-            this.min=minValue;
-            this.max=maxValue;
+            vec.min=minValue;
+            vec.max=maxValue;
      }
 
-     public void multiScalaire (int scal) { //multiplie le vecteur par un scalaire
+    /**
+     * a function that multiplicate all the values of one vector by a number
+     * @param vec the vector of which we want to multiplicate the elements
+     * @param scal the number that we multiplicate the values by.
+     *       Exemples:
+     *       input:  1| 2| 3 |5      scal 2
+     *       output:   2 |4 |6 | 10
+     *
+     */
+
+     public void multiScalaire ( Vector vec,int scal) {
                  int i=0;
-                 //modification
-                  for (i=0;i<this.vec.length;i++) {
-     		    this.vec[i]=vec[i]*scal ;
+
+                  for (i=0;i<vec.getVec().length;i++) {
+     		          vec.getVec()[i]=vec.getVec()[i]*scal ;
                    }
 
     }
@@ -109,5 +150,4 @@ public class VectorHelper {
 
 
 }
-    
-}
+
