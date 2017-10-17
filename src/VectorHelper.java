@@ -36,6 +36,7 @@ public class VectorHelper{
      * a function that make the additon of two vectors  with the same size and throw an exception if not
      * @param vec1  vector of which we want to add the values to those of vec2
      * @param vec2  vector of which we want to add the values to those of vec1
+     * @return the vectors of the result of the addition
      * @throws  DifferentLengthException
      *      Exemples:
      *      input:  1| 2| 3 |5      2 |3 |4| 1
@@ -43,7 +44,7 @@ public class VectorHelper{
      */
 
 
-    public void sommeVec(Vector vec1 , Vector vec2 ) throws DifferentLengthException {
+    public Vector sommeVec(Vector vec1 , Vector vec2 ) throws DifferentLengthException {
          Vector vec3 = new Vector();
        try{
        if(vec1.getComponantNumber() != vec2.getComponantNumber()) {
@@ -60,6 +61,7 @@ public class VectorHelper{
         {
           e= new DifferentLengthException();
         }
+        return vec3;
     }
 
     /**
@@ -105,17 +107,17 @@ public class VectorHelper{
 
     /**
      *  a function that gives the minimum  and the maximum of one vector
-     * @param vec the vector of which we desire to find the min and the max.
-     *      Exemples:
-     *      input:  1| 2| 3 |5
-     *      output:   min 1  max 5
+     * @param vec thee of which we desire to find the min and the max.
+     * Exemples:
+     *             intput: |1 |2 | 3 |5 |
+     *            output : min =1  max= 5
      */
 
-  public void setExtrema (Vector vec) {
+  public void setExtrema(Vector vec) {
     	    int i=0;
     	    int minValue =vec.getVec()[0];
     	    int maxValue =vec.getVec()[0];
-    	    while (i<vec.getVec().length) {
+    	    while (i<vec.getComponantNumber()-1) {
             if (vec.getVec()[i] <minValue) {
                 minValue=vec.getVec()[i];
            			 }
@@ -141,7 +143,7 @@ public class VectorHelper{
      public void multiScalaire ( Vector vec,int scal) {
                  int i=0;
 
-                  for (i=0;i<vec.getVec().length;i++) {
+                  for (i=0;i<vec.getComponantNumber();i++) {
      		          vec.getVec()[i]=vec.getVec()[i]*scal ;
                    }
 
