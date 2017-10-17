@@ -43,7 +43,7 @@ public class VectorHelper{
      */
 
 
-    public void sommeVec(Vector vec1 , Vector vec2 ) throws DifferentLengthException {
+    public Vector sommeVec(Vector vec1 , Vector vec2 ) throws DifferentLengthException {
          Vector vec3 = new Vector();
        try{
        if(vec1.getComponantNumber() != vec2.getComponantNumber()) {
@@ -60,10 +60,11 @@ public class VectorHelper{
         {
           e= new DifferentLengthException();
         }
+        return vec3;
     }
 
     /**
-     *  a function that give the smallest element's index in one interval of values
+     *  a function that gives the smallest element's index in one interval of values
      * @param vec  the vector on which we make the operation of research
      * @param n1 the beginning of the research index
      * @param n2 the ending of the research index
@@ -115,7 +116,7 @@ public class VectorHelper{
     	    int i=0;
     	    int minValue =vec.getVec()[0];
     	    int maxValue =vec.getVec()[0];
-    	    while (i<vec.getVec().length) {
+    	    while (i<vec.getComponantNumber()-1) {
             if (vec.getVec()[i] <minValue) {
                 minValue=vec.getVec()[i];
            			 }
@@ -141,7 +142,7 @@ public class VectorHelper{
      public void multiScalaire ( Vector vec,int scal) {
                  int i=0;
 
-                  for (i=0;i<vec.getVec().length;i++) {
+                  for (i=0;i<vec.getComponantNumber()-1;i++) {
      		          vec.getVec()[i]=vec.getVec()[i]*scal ;
                    }
 
