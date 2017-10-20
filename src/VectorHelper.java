@@ -42,7 +42,8 @@ public class VectorHelper{
      *      input:  1| 2| 3 |5      2 |3 |4| 1
      *      output:   3 |5 |7 | 6
      */
-
+//AJOUT D'une ligne de code en commentaire !!
+		
 
     public Vector sommeVec(Vector vec1 , Vector vec2 ) throws DifferentLengthException {
          Vector vec3 = new Vector();
