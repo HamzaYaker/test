@@ -42,8 +42,12 @@ public class VectorHelper{
      *      input:  1| 2| 3 |5      2 |3 |4| 1
      *      output:   3 |5 |7 | 6
      */
+
 //AJOUT D'une ligne de code en commentaire !!
 		
+
+
+
 
     public Vector sommeVec(Vector vec1 , Vector vec2 ) throws DifferentLengthException {
          Vector vec3 = new Vector();
@@ -66,7 +70,9 @@ public class VectorHelper{
     }
 
     /**
+
      *  a function that gives the smallest element's index in one interval of values
+
      * @param vec  the vector on which we make the operation of research
      * @param n1 the beginning of the research index
      * @param n2 the ending of the research index
@@ -145,9 +151,14 @@ public class VectorHelper{
                  int i=0;
 
 
+
                   for (i=0;i<vec.getComponantNumber()-1;i++) {
 
         
+
+
+
+                  for (i=0;i<vec.getComponantNumber()-1;i++) {
 
      		          vec.getVec()[i]=vec.getVec()[i]*scal ;
                    }

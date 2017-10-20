@@ -6,7 +6,9 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Adel on 15/10/2017.
- * Test Calss
+
+ * Test Calss to test the methodes
+
  */
 public class TestVectorHelper {
     @Test
